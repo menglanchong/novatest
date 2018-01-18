@@ -84,5 +84,10 @@ public class CommonMethodService extends CommonMethod{
 
         }
     }
+    public static void listData(By elment,int index){
+        List<WebElement> first= driver.findElements(elment);
+        first.get(index).click();
+    }
+
 
 }

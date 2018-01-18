@@ -22,6 +22,8 @@ public class SafetyPage {
     public static By MONTHCHECKQUERY=By.name("项目月自评(查询)");
     public static By CHECKPROJECT=By.name("项目考评（查询）");
     public static By COMPANY=By.name("施工企业考评");
+    public static By IMFORMATION=By.name("施工企业基本信息");
+    public static By ETPEVALUE=By.name("施工企业自评(填报)");
     public static By EVALUATION=By.name("施工企业考评申请(填报)");
     public static By EVALUATIONQUERY=By.name("施工企业考评(查询)");
     public static By PUBLICKNOTICE=By.name("施工企业考评结果公示书");
@@ -65,6 +67,7 @@ public class SafetyPage {
     public static By OVERDUE=By.name("seek_isover");//是否逾期
     public static By EVALRESULT=By.name("seek_evalresult");//自评结果
     public static By DATA=By.className("el-pagination__total");//共几条
+    public static By SAVE=By.xpath(".//*[@id='etpEvalueSelf']/div[2]/div/div[3]/center/input[1]");
 
 
 

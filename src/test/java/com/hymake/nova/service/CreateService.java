@@ -1,7 +1,9 @@
 package com.hymake.nova.service;
 
 
+import com.hymake.nova.page.CommonPage;
 import com.hymake.nova.page.CreatDangerSourcePage;
+import com.hymake.nova.page.SafetyPage;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,6 +75,31 @@ public class CreateService extends CommonMethod{
 
         new WebDriverWait(driver,30).until(ExpectedConditions.presenceOfElementLocated(CreatDangerSourcePage.PROMPT));
         driver.findElement(CreatDangerSourcePage.PROMPT).click();
+    }
+    public static void createSafetyMethod(String pathfile){
+        String path=System.getProperty("user.dir");//获取当前路径
+        String JsonContext = new CommonMethod().ReadFile(path+pathfile);
+        JSONObject jsons = new JSONObject(JsonContext);
+        JSONArray features = jsons.getJSONArray("yongl");// 找到features的json数组
+        for (int i = 0; i < features.length(); i++) {
+            JSONObject info = features.getJSONObject(i);// 获取features数组的第i个json对象
+            //JSONObject properties = info.getJSONObject("properties");// 找到properties的json对象
+            String name = info.getString("name");// 读取properties对象里的name字段值
+            String type = info.getString("type");
+            String value = info.getString("value");
+            CommonMethod.sleep(2000);
+            if ("text".equals(type)) {
+                driver.findElement(By.name(name)).sendKeys(value);
+            }else if("radio".equals(type)){
+                driver.findElement(By.id(name)).click();
+            }
+        }
+        CommonMethodService.listData(CommonPage.BUTTON,6);
+        //driver.findElement(by).click();
+        CommonMethodService.listData(CommonPage.PROMPT,1);
+    }
+    public static void creatFactory(){
+        CommonMethodService.listData(CommonPage.BUTTON,1);
     }
 
 }
